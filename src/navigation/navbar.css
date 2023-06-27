@@ -1,0 +1,198 @@
+a {
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 500;
+  text-transform: capitalize;
+  letter-spacing: 1px;
+  align-items: center;
+  padding: 1rem 0.5rem 0;
+  display: flex;
+  transition: all 0.2s ease-in-out;
+}
+
+a:hover {
+  text-decoration: underline;
+  font-size: 1.5rem;
+  
+}
+
+.nav_container {
+  min-height: 11vh;
+  box-shadow: 0 1px 1px -1px rgb(165, 165, 165);
+  display: flex;
+  width: 100%;
+  padding: 1rem;
+  color: rgba(8, 41, 155, 1);
+  background: #fff;
+  /* z-index: 100; */
+}
+
+.nav_header {
+  font-size: 50px;
+  font-weight: 500;
+}
+
+.nav_container1 {
+  /* min-height: 11vh; */
+  box-shadow: 0 1px 1px -1px rgb(165, 165, 165);
+  display: flex;
+  /* position: fixed; */
+  width: 100%;
+  background-color: #fff;
+  /* z-index: 100; */
+  opacity: 0.6;
+}
+
+.nav_wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: right;
+  width: 100%;
+}
+
+.nav_ul ul {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+
+.nav_icons {
+  display: none;
+}
+
+.nav_icon {
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.app_navbar_profile_flex {
+  display: flex;
+
+  align-items: center;
+  width: 50%;
+}
+
+.carefinderlogo {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 1rem;
+  background-color: rgb(255, 255, 255);
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 1rem;
+}
+
+.home {
+  font-family: DM Sans;
+  font-size: 27px;
+  font-weight: 500;
+  line-height: 41px;
+  letter-spacing: -0.011em;
+  text-align: left;
+}
+.about{
+    font-family: DM Sans;
+  font-size: 27px;
+  font-weight: 500;
+  line-height: 41px;
+  letter-spacing: -0.011em;
+  text-align: left;
+}
+
+.hospitals {
+  font-family: DM Sans;
+  font-size: 27px;
+  font-weight: 500;
+  line-height: 41px;
+  letter-spacing: -0.011em;
+  text-align: left;
+}
+
+.signup {
+  background-color: rgba(8, 41, 155, 1);
+  border-radius: 10px;
+  color: rgb(255, 255, 255);
+  font-family: DM Sans;
+  font-size: 27px;
+  font-weight: 500;
+  line-height: 41px;
+  letter-spacing: -0.011em;
+  text-align: left;
+}
+
+.signin {
+  background-color: rgba(8, 41, 155, 1);
+  border-radius: 10px;
+  color: rgb(255, 255, 255);
+  font-family: DM Sans;
+  font-size: 27px;
+  font-weight: 500;
+  line-height: 41px;
+  letter-spacing: -0.011em;
+  text-align: left;
+}
+
+@media screen and (max-width: 991px) {
+  .nav_icons {
+    display: block;
+  }
+
+  .nav_container1 {
+    opacity: 1;
+  }
+
+  .nav_ul {
+    position: absolute;
+    top: calc(100%);
+    background-color: rgb(255, 255, 255);
+    width: 100%;
+    text-align: center;
+    height: 100vh;
+    left: -100%;
+    padding-top: 2rem;
+    transition: 0.5s ease;
+  }
+
+  .nav_ul ul {
+    flex-direction: column;
+  }
+
+  /* hamburger menu open and close */
+  .nav_ul.active {
+    left: 0;
+    transition: 0.5s ease;
+  }
+
+  .app_navbar_profile_flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  /* Align header to center */
+  .nav_wrapper h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-size: 35px;
+  }
+
+  a {
+    font-size: 1rem;
+    text-decoration: none;
+    color: rgba(8, 41, 155, 1);
+    transition: none;
+  }
+
+  a:hover {
+    text-transform: none;
+  }
+}

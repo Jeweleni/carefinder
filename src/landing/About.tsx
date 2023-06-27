@@ -1,0 +1,51 @@
+import React from 'react';
+import './about.css';
+
+import hospital2 from '../assets/hospital2.png';
+
+const About = () => {
+  return (
+    <section>
+
+        <div className='container about__container'>
+        <h4>Welcome to</h4>
+        <h2>Carefinder</h2>
+                <div className="about__me">
+                    <div className="about__me-image">
+                        <img src={hospital2} alt=""/>
+                    </div>
+                </div>    
+                    <div className="about__content">
+                        <div className="about__cards">
+                            <article className="about__card"> 
+                                {/* <FaAward className= "about__icon"/> */}
+                                <h5>Search Doctors</h5>
+                                <small>Effortlessly Find the Best Hospitals Near You</small>  
+                            </article>
+                            <article className="about__card">
+                                {/* <IoSchoolSharp className= "about__icon"/> */}
+                               <h5>Search Hospitals</h5>
+                                <small>Effortlessly Find the Best Doctors Near You</small>
+                            </article>
+                            <article className="about__card">
+                                {/* <IoGitNetwork className= "about__icon"/> */}
+                                <h5>Export Hospitals</h5>
+                                <small>Save list of hospitals.</small>
+                            </article>
+                            <article className="about__card">
+                                {/* <IoGitNetwork className= "about__icon"/> */}
+                                <h5>Share Hospitals</h5>
+                                <small>Share the list of hospitals with others. </small>
+                            </article>
+                           
+                        </div>
+                        <p>Carefinder is a platform where users can search for hosiptals in their areas, export hospital details for your records and  enhance your healthcare experience by connecting with others and sharing valuable resources.</p>
+                           <a href="/hospitals" className="btn btn-primary">Book an Appointment</a>
+                    </div>
+            </div>
+
+    </section>
+  )
+}
+
+export default About
