@@ -1,4 +1,4 @@
-.registration-form-wrapper {
+.login-form-wrapper {
   background: url(../assets/signup.png);
   background-repeat: no-repeat;
   height: 100vh;
@@ -6,22 +6,20 @@
   place-items: center;
 }
 
-.registration-form {
+.login-form {
   width: 400px;
   padding: 20px;
   box-sizing: border-box;
   background-color: #ffffff;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+
 }
 
-h1 {
+h2 {
   text-align: center;
   margin-bottom: 20px;
-}
-
-p {
-  font-size: 10px;
 }
 
 .form-group {
@@ -42,26 +40,22 @@ input {
   border-radius: 4px;
 }
 
-/* button {
-     background-color: #4caf50;
-     color: #fff;
-     padding: 10px 16px;
-     border: none;
-     border-radius: 4px;
-     cursor: pointer;
-   } */
-
 .login-methods button {
   border: none;
-  width: 100%;
-  padding: 8px;
-  font-size: 16px;
-  border-radius: 4px;
-  background: rgba(8, 41, 155, 1);
-  color: white;
-  cursor: pointer;
-  transition: all 0.3s ease 0s;
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 4px;
+    background: rgba(8, 41, 155, 1);
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+
 }
+.linkback{
+cursor: pointer;
+}
+
 .login-methods {
   border: none;
   margin: 2px 0px;
@@ -73,21 +67,32 @@ input {
   color: white;
   cursor: pointer;
   transition: all 0.3s ease 0s;
+  
 }
 
 .login-methods:hover {
   background: rgba(8, 41, 155, 1);
-  color: white;
-  border: none;
-  box-shadow: 0px 15px 20px rgb(8, 77, 155);
-  transform: translateY(-7px);
+  opacity: 0.8;
 }
-.linkback {
-  color: black;
+.reset-password{
+  text-decoration: underline;
+  font-size: 0.8rem;
+  color: "rgb(30, 167, 170)";
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  display: "flex";
 }
 
 @media (max-width: 600px) {
-  .registration-form {
-    width: 300px;
+  .login-form {
+    max-width: 300px;
+    border: 2px solid rgba(8, 41, 155, 1);
+    margin-top: 100px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 10);
+  }
+
+  h1 {
+    font-size: 20px;
   }
 }

@@ -1,147 +1,130 @@
 .careheader_container {
-   background: url(../assets/carefinder1.png);
-   background-size: cover;
+  background: url(../assets/carefinder1.png);
+  /* background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    display: grid;
+    place-items: center; */
+  background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   object-fit: contain;
   height: 100vh;
-  max-height: fit-content;
- 
+  width: 100%;
+  margin: 0%;
+  margin-top: 0%;
+  padding: 0%;
 }
 
+.careheader_wrapper {
+    height: 100%;
+    width: 100%;
+}
 .careheader_head {
-    text-align: center;
-    line-height: 3rem;
-
+  text-align: center;
+  line-height: 3rem;
 }
 
 .careheader_heading,
 .heading_para {
-    color: rgba(8, 41, 155, 1);
+  color: rgba(8, 41, 155, 1);
 }
 
 .careheader_heading {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  /* margin-top: 1rem; */
 }
+
+/* .careheader_heading h1 {
+  margin-top: 1rem;
+} */
 
 .careheader_input {
-    width: 60%;
-    margin: 0%;
-    text-align: center;
-    border-radius: 10px;
-    cursor: pointer;
-    padding: 8px 12px;
+  position: relative;
 }
 
-
-
 .careheader_input_element {
-    padding: 0.5rem 1rem;
-    outline: none;
-    border: none;
-    border-radius: 30px;
-
+  padding: 10px 20px;
+  outline: none;
+  border: none;
+  border-radius: 30px;
+  width: 90%;
 }
 
 .careheader_input_icon {
-    position: absolute;
-    right: 45px;
-    font-size: 1.5rem;
-    top: 15px;
-    cursor: pointer;
+  position: absolute;
+  right: 45px;
+  font-size: 1.5rem;
+  top: 15px;
+  cursor: pointer;
 }
 
-
-.careheader_heading_span {
-    text-decoration: underline;
-}
+/* .careheader_heading_span {
+  text-decoration: underline;
+} */
 
 .careheader_select {
-   display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 1.5rem;
-    gap: 1rem;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: 1.5rem;
+  gap: 1rem;
 }
 
 .careheader_item {
-    color: #fff;
-    background-color: rgba(8, 41, 155, 1);
-    padding: 8px 12px;
-    text-align: center;
-    border-radius: 10px;
-    width: 60%;
-    cursor: pointer;
+  color: #fff;
+  background-color: rgba(8, 41, 155, 1);
+  padding: 8px 12px;
+  text-align: center;
+  border-radius: 10px;
+  width: 100%;
+  cursor: pointer;
 }
 
-.careheader_item:hover{
-    background-color: rgb(57, 77, 255);
-   
-    cursor: pointer;
-    transition: ease-in-out 0.3s;
+.careheader_item:hover {
+  background-color: rgb(57, 77, 255);
 
+  cursor: pointer;
+  transition: ease-in-out 0.3s;
 }
 
 .careheader_select_icon {
-    font-size: 30px;
-
-
+  font-size: 30px;
 }
 
 .careheader_select_icon:hover {
-    color:  rgb(57, 77, 255);
-    cursor: pointer;
-    transition: ease-in-out 0.3s;
+  color: rgb(57, 77, 255);
+  cursor: pointer;
+  transition: ease-in-out 0.3s;
 }
 
+@media screen and (max-width: 991px) {
+  .careheader_heading {
+    font-size: 2rem;
+  }
 
-.carephoto{
-    
-position: absolute;
-width: 816px;
-height: 603px;
-left: 624px;
-top: 210px;
-filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25)) drop-shadow(12px 12px 20px rgba(14, 61, 183, 0.25));
-border-radius: 50px 50px 50px 50px;
-opacity: 0.5;
+  .careheader_select {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
 
-
-}
-
-.right{
-    width: 40%;
-}
-
-@media screen and (max-width:991px) {
-    .careheader_heading {
-        font-size: 2rem;
-    }
-
-    .careheader_select {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
-        
-          
-    }
-
-    .careheader_item {
-        margin-bottom: 1rem;
-    }
-    .careheader_select_icon{
-        font-size: 20px;
-    }
-  .careheader_container{
-    background:url(../assets/carefinder1.png);
+  .careheader_item {
+    margin-bottom: 1rem;
+  }
+  .careheader_select_icon {
+    font-size: 20px;
+  }
+  .careheader_container {
+    background: url(../assets/carefinder1.png);
     background-size: cover;
     background-repeat: no-repeat;
     height: 100vh;
     display: grid;
     place-items: center;
   }
-
 }

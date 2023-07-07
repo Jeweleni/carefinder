@@ -1,34 +1,142 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import HospitalCard from "./Card";
+import HospitalCard from "../hospital/HospitalCard";
 import "./hospital.css";
 import { AiOutlineSearch } from "react-icons/ai";
-import firebase, { auth } from "../firebase";
-// import {auth} from "firebase/app";
-import "firebase/app";
 import { FaWhatsapp, FaEnvelope, FaLink } from "react-icons/fa";
+// import StreetViewMap from "../pages/MapContainer";
 import MapContainer from "../pages/MapContainer";
-import { Carousel } from "react-responsive-carousel";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
 
-const Hospitals: React.FC = () => {
+
+interface HospitalProps {
+  handleDetails: (place_id: string) => void;
+}
+
+const Hospitals: React.FC<HospitalProps> = ({ handleDetails }) => {
   const [testHospitals, setTestHospitals] = useState<any[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [nextTokens, setNextTokens] = useState<any[]>([]);
   const [nextState, setNextState] = useState<boolean>(false);
   const [pageUrl] = useState<string[]>([
-    "http://localhost:8080/api/maps/place?latitude=6.468137&longitude=3.638487&radius=30000",
-    "http://localhost:8080/api/maps/place/next?nextpage=",
+    `https://ugomedicareserver-gmkphvvg6-ugochiori.vercel.app/api/maps/place?latitude=6.468137&longitude=3.638487&radius=100000`,
+    `https://ugomedicareserver-gmkphvvg6-ugochiori.vercel.app/api/maps/place/next?nextpage=`,
   ]);
   const [searchQuery, setSearchQuery] = useState<string>("");
-  const [loading, setLoading] = useState<boolean>(true); // Added loading state
-  // const [radius, setRadius] = useState<number>(30000);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [filteredHospitals, setFilteredHospitals] = useState<any[]>([]);
+  // const [userLocation, setUserLocation] = useState<GeolocationCoordinates | null>(null);
+  const [latitude, setLatitude] = useState(6.5095);
+  const [longitude, setLongitude] = useState(3.3711);
 
-  // const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   setRadius(parseInt(e.target.value));
-  // };
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(e.target.value);
+  };
 
-  // SHARE VIA WHATSAPP
+  const nextPage = () => {
+    setCurrentPage((prevPage) => prevPage + 1);
+  };
+
+  const previousPage = () => {
+    setCurrentPage((prevPage) => prevPage - 1);
+  };
+
+  useEffect(() => {
+    const filteredHospitals = testHospitals.filter((hospital) =>
+      hospital.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    setFilteredHospitals(filteredHospitals);
+  }, [searchQuery, testHospitals]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      let pageToCall: string | undefined;
+      if (currentPage === 1) {
+        setLoading(true);
+        try {
+          const res = await axios.get(pageUrl[0]);
+          setTestHospitals(res.data.results);
+          if (res.data.next_page_token) {
+            setNextState(true);
+          }
+          const nextPage = { page: 2, token: res.data.next_page_token };
+          setNextTokens([...nextTokens, nextPage]);
+        } catch (error) {
+          console.log(error);
+        } finally {
+          setLoading(false);
+        }
+      } else if (currentPage > 1) {
+        nextTokens.forEach((page) => {
+          if (page.page === currentPage) {
+            pageToCall = page.token;
+          }
+        });
+        setLoading(true);
+        try {
+          const res = await axios.get(`${pageUrl[1]}${pageToCall}`);
+          setTestHospitals(res.data.results);
+          if (res.data.next_page_token) {
+            const nextPage = {
+              page: currentPage + 1,
+              token: res.data.next_page_token,
+            };
+            setNextTokens([...nextTokens, nextPage]);
+          } else {
+            setNextState(false);
+          }
+        } catch (error) {
+          console.log(error);
+        } finally {
+          setLoading(false);
+        }
+      }
+    };
+
+    fetchData();
+  }, [currentPage]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const nearbyHospitalsUrl = `https://ugomedicareserver-gmkphvvg6-ugochiori.vercel.app/api/maps/place?latitude=${latitude}&longitude=${longitude}&radius=50000&type=hospitals`;
+
+      try {
+        const res = await axios.get(nearbyHospitalsUrl);
+        setTestHospitals(res.data.results);
+        if (res.data.next_page_token) {
+          setNextState(true);
+        }
+        const nextPage = { page: 2, token: res.data.next_page_token };
+        setNextTokens([...nextTokens, nextPage]);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [latitude, longitude]);
+
+  useEffect(() => {
+    const getLocation = () => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            setLatitude(position.coords.latitude);
+            setLongitude(position.coords.longitude);
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+      } else {
+        alert("Geolocation is not available");
+      }
+    };
+
+    getLocation();
+  }, []);
+
   const handleShare = () => {
     const hospitalData = testHospitals
       .map((hospital) => hospital.name)
@@ -39,165 +147,29 @@ const Hospitals: React.FC = () => {
     window.open(whatsappUrl, "_blank");
   };
 
-  //   const handleShareEmail = () => {
-  //     const hospitalData = testHospitals.map((hospital) => hospital.name).join("\n");
-  //     const shareBody = `Check out these hospitals: \n${hospitalData}`;
+  const handleShareEmail = () => {
+    const hospitalData = testHospitals
+      .map((hospital) => hospital.name)
+      .join("\n");
+    const shareBody = `Check out these hospitals: \n${hospitalData}`;
 
-  // const user = firebase.auth().currentUser;
-  // if (user) {
-  //   user
-  //     .sendEmailVerification()
-  //     .then(() => {
-  //       alert("Email sent!");
-  //     })
-  //     .catch((error: { message: any }) => {
-  //      console.error("Error sending email verification", error);
-  //     });
-  //   } else {
-  //     alert("You need to be logged in to share via email");
-  // }
-  //   }
+    const emailUrl = `mailto:?subject=${encodeURIComponent(
+      "Check out these hospitals"
+    )}&body=${encodeURIComponent(shareBody)}`;
+    window.open(emailUrl, "_blank");
+  };
 
-  // GENERATE SHAREABLE LINK
   const handleGenerateLink = () => {
     const hospitalData = testHospitals
       .map((hospital) => hospital.name)
       .join("\n");
     const shareBody = `Check out these hospitals: \n${hospitalData}`;
 
-    const user = auth.currentUser;
-    if (user) {
-      const link = `${window.location.href}?share=${encodeURIComponent(
-        shareBody
-      )}`;
-      navigator.clipboard.writeText(link);
-      alert("Link copied to clipboard");
-    } else {
-      alert("You need to be logged in to generate a shareable link");
-    }
+    const linkUrl = `https://hospital-carefinder.vercel.app/hospitals?subject=${encodeURIComponent(
+      "Check out these hospitals"
+    )}&body=${encodeURIComponent(shareBody)}`;
+    window.open(linkUrl, "_blank");
   };
-
-  // SEARCH HOSPITALS
-  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchQuery(e.target.value);
-
-    if (e.target.value === "") {
-      setTestHospitals([]);
-      setLoading(true);
-      axios
-        .get(pageUrl[0])
-        .then((res) => {
-          console.log(res.data.results);
-          setTestHospitals(res.data.results);
-          if (res.data.next_page_token) {
-            setNextState(true);
-          }
-          const nextPage = { page: 2, token: res.data.next_page_token };
-          setNextTokens([...nextTokens, nextPage]);
-          console.log(typeof res.data.results[0].name);
-        })
-        .catch((err) => {
-          console.log(err);
-        })
-        .finally(() => {
-          setLoading(false);
-        });
-    }
-  };
-
-  function nextPage(page: any) {
-    if (page) {
-      setCurrentPage(currentPage + 1);
-      return;
-    }
-    setCurrentPage(currentPage - 1);
-  }
-
-  useEffect(() => {
-    setLoading(true); // Start loading
-    axios
-      .get(pageUrl[0])
-      .then((res) => {
-        console.log(res.data.results);
-        setTestHospitals(res.data.results);
-        if (res.data.next_page_token) {
-          setNextState(true);
-        }
-        const nextPage = { page: 2, token: res.data.next_page_token };
-        setNextTokens([...nextTokens, nextPage]);
-        console.log(typeof res.data.results[0].name);
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-      .finally(() => {
-        setLoading(false); // Stop loading
-      });
-  }, []);
-
-  useEffect(() => {
-    let pageToCall: string | undefined;
-    if (currentPage === 1) {
-      setLoading(true); // Start loading
-      axios
-        .get(pageUrl[0])
-        .then((res) => {
-          console.log(res.data.results);
-          setTestHospitals(res.data.results);
-          if (res.data.next_page_token) {
-            setNextState(true);
-          }
-          const nextPage = { page: 2, token: res.data.next_page_token };
-          setNextTokens([...nextTokens, nextPage]);
-          console.log(typeof res.data.results[0].name);
-        })
-        .catch((err) => {
-          console.log(err);
-        })
-        .finally(() => {
-          setLoading(false); // Stop loading
-        });
-    } else if (currentPage > 1) {
-      nextTokens.map((page) => {
-        if (page.page === currentPage) {
-          pageToCall = page.token;
-        }
-      });
-      setLoading(true); // Start loading
-      axios
-        .get(`${pageUrl[1]}${pageToCall}`)
-        .then((res) => {
-          // console.log(res.data.results);
-          setTestHospitals(res.data.results);
-          if (res.data.next_page_token) {
-            const nextPage = {
-              page: currentPage + 1,
-              token: res.data.next_page_token,
-            };
-            setNextTokens([...nextTokens, nextPage]);
-          }
-          if (res.data.next_page_token) {
-            setNextState(true);
-          } else {
-            setNextState(false);
-          }
-          console.log(typeof res.data.results[0].name);
-        })
-        .catch((err) => {
-          console.log(err);
-        })
-        .finally(() => {
-          setLoading(false); // Stop loading
-        });
-    }
-  }, [currentPage]);
-
-  useEffect(() => {
-    const filteredHospitals = testHospitals.filter((hospital) =>
-      hospital.name.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-    setTestHospitals(filteredHospitals);
-  }, [searchQuery]);
 
   return (
     <div>
@@ -206,84 +178,59 @@ const Hospitals: React.FC = () => {
           <AiOutlineSearch className="careheader_input_icon" />
           <input
             type="text"
-            placeholder="Search for hospitals"
+            placeholder="Search by name"
+            value={searchQuery}
             onChange={handleSearch}
           />
         </div>
       </div>
-
-      <div className="hospital-cover">
+      <div className="hospitals-cover">
         {loading ? (
-          <div className="loader">Loading...</div> // Show loading state
+          <div className="loader">Loading...</div>
         ) : (
-          <div className="carousel">
-          <Carousel
-           showStatus={false} 
-           showThumbs={false}
-            infiniteLoop={true}
-            autoPlay={true}
-            interval={5000}
-            transitionTime={1000}
-           >
-          
-            {testHospitals?.map((_hospital: any, index: number) => {
-              // const photoReference = _hospital.photos?.[0]?.photo_reference; // Added a conditional check
-              return (
-                <div key={index}>
+          <>
+            {filteredHospitals.length === 0 ? (
+              <p>No hospitals found</p>
+            ) : (
+              <div className="hospitals-grid">
+                {filteredHospitals.map((_hospital, index) => (
                   <HospitalCard
-                    // key={index}
-                    // photo={photoReference}
+                    key={index}
                     name={_hospital.name}
                     status={_hospital.business_status}
-                    // userRatings={_hospital.user_ratings_total}
                     rating={_hospital.rating}
-                    // photo_reference={undefined}
+                    details={_hospital}
+                    formatted_address={_hospital.vicinity}
+                    handleDetails={handleDetails}
                   />
-                </div>
-              );
-            })}
-          </Carousel>
-          </div>
+                ))}
+              </div>
+            )}
+          </>
         )}
       </div>
       <div className="pagination-buttons">
-        <button
-          disabled={currentPage === 1}
-          onClick={() => {
-            nextPage(false);
-          }}
-        >
+        <button disabled={currentPage === 1} onClick={previousPage}>
           Prev
         </button>
-        <button
-          disabled={!nextState}
-          onClick={() => {
-            nextPage(true);
-          }}
-        >
+        <button disabled={!nextState} onClick={nextPage}>
           Next
         </button>
-        {/* ADD THE SHARE BUTTONS */}
-        <FaWhatsapp
-          className="share-button"
-          onClick={() => {
-            handleShare();
-          }}
-        />
-        {/* <FaEnvelope
-          className="share-button"
-          onClick={() => {
-            handleShareEmail();
-          }}
-        /> */}
-        <FaLink
-          className="share-button"
-          onClick={() => {
-            handleGenerateLink();
-          }}
-        />
+        <div className="share-button-container">
+          <FaWhatsapp className="share-button" onClick={handleShare} />
+          <FaEnvelope className="share-button" onClick={handleShareEmail} />
+          <FaLink className="share-button" onClick={handleGenerateLink} />
+        </div>
       </div>
-      <MapContainer hospitals={testHospitals} />
+      <div>
+
+       
+        <MapContainer hospitals={[...filteredHospitals]}        
+
+         />
+        
+        
+      </div>
     </div>
   );
 };

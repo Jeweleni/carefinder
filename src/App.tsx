@@ -1,5 +1,5 @@
-import React, { useEffect, useContext } from "react";
-import { Routes, Route } from "react-router-dom";
+import React, { useEffect, useContext, useState } from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Home from "./landing/Home";
 import About from "./landing/About";
 import Signin from "./pages/Signin";
@@ -15,10 +15,9 @@ import { auth, signOut, signInWithGoogle } from "./firebase";
 import Navbar from "./navigation/Navbar";
 import Doctors from "./pages/Doctors";
 
-
 function App() {
   const { currentUser, setCurrentUser } = useContext(AuthContext);
-
+  const [details, setDetails] = useState();
   let count = localStorage.getItem("page_views");
   if (count === null) {
     count = "1";
@@ -26,6 +25,11 @@ function App() {
     count = (parseInt(count) + 1).toString();
   }
   localStorage.setItem("page_views", count);
+
+  // SET DETAILS
+  const handleDetails = (details: any) => {
+    setDetails(details);
+  };
 
   // Google Signin
   const signIn = () => {
@@ -63,12 +67,36 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/signin" element={<Signin signIn={signIn} />} />
           <Route path="/signup" element={<Signup />} />;
-          <Route path="/hospitals" element={<Hospitals />} />
-          <Route path="/hospitaldetails" element={<HospitalDetails name={""} status={""}  rating={""} />} />
+          <Route
+            path="/hospitals"
+            element={
+              currentUser ? (
+                <Hospitals handleDetails={handleDetails} />
+              ) : (
+                <Navigate to="/signin" />
+              )
+            }
+          />
+          <Route
+            path="/hospitaldetails"
+            element={
+              <HospitalDetails
+                name={""}
+                business_status={""}
+                rating={""}
+                details={details}
+                vicinity={""}
+                opening_hours={false}
+              />
+            }
+          />
+          {/* <Route
+            path="/hospitaldetails"
+            element={<HospitalDetails name={""} business_status={""} rating={""} />}
+          /> */}
           <Route path="/doctors" element={<Doctors />} />
           <Route path="/healthtips" element={<HealthTips />} />
         </Routes>
-     
       </ErrorBoundary>
     </div>
   );

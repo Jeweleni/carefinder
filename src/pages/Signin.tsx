@@ -1,7 +1,3 @@
-
-
-
-
 import React, { useState, useEffect, FormEvent } from "react";
 import { auth } from "../firebase";
 import {
@@ -9,9 +5,10 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
   signOut,
+  sendPasswordResetEmail,
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import "./login.css";
+import "./signin.css";
 
 interface SigninFormProps {
   signIn: () => void;
@@ -94,6 +91,17 @@ const Signin: React.FC<SigninFormProps> = ({ signIn }) => {
     }
   };
 
+  const handleResetPasssword = async () => {
+    try {
+      await sendPasswordResetEmail(auth, email);
+      console.log("Sending password reset email, please check your email");
+      setPasswordError(" Password reset email sent, please check your email");
+    } catch (error) {
+      console.log("Sending password reset email failed, please try again");
+      setPasswordError(" Password reset email failed, please try again");
+    }
+  };
+
   const handleLogout = async () => {
     try {
       await signOut(auth);
@@ -139,14 +147,14 @@ const Signin: React.FC<SigninFormProps> = ({ signIn }) => {
               />
               {passwordError && <span className="error">{passwordError}</span>}
             </div>
-            <button 
-            onClick={
-              () => {
+            <button
+              onClick={() => {
                 // signIn();
                 navigate("/hospitals");
-              }
-            }
-            className="login-methods" type="submit">
+              }}
+              className="login-methods"
+              type="submit"
+            >
               Login
             </button>
           </form>
@@ -159,9 +167,15 @@ const Signin: React.FC<SigninFormProps> = ({ signIn }) => {
             </button>
           </div>
         )}
+        <a
+          href="/"
+          className="reset-password"
+          onClick={handleResetPasssword}
+        >
+          Reset Password
+        </a>
 
         {!loggedIn && (
-          
           <p className="linkback" onClick={() => navigate("/signup")}>
             Need an account? Sign Up
           </p>

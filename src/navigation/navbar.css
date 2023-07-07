@@ -13,8 +13,7 @@ a {
 
 a:hover {
   text-decoration: underline;
-  font-size: 1.5rem;
-  
+  /* font-size: 1.5rem; */
 }
 
 .nav_container {
@@ -25,7 +24,7 @@ a:hover {
   padding: 1rem;
   color: rgba(8, 41, 155, 1);
   background: #fff;
-  /* z-index: 100; */
+  z-index: 100;
 }
 
 .nav_header {
@@ -55,6 +54,9 @@ a:hover {
   list-style: none;
   display: flex;
   gap: 2rem;
+}
+.user_icon {
+  text-decoration: none;
 }
 
 .nav_icons {
@@ -96,8 +98,8 @@ a:hover {
   letter-spacing: -0.011em;
   text-align: left;
 }
-.about{
-    font-family: DM Sans;
+.about {
+  font-family: DM Sans;
   font-size: 27px;
   font-weight: 500;
   line-height: 41px;
@@ -136,6 +138,11 @@ a:hover {
   line-height: 41px;
   letter-spacing: -0.011em;
   text-align: left;
+}
+
+#dropdown_menu {
+  font-family: cursive;
+  text-decoration: none;
 }
 
 @media screen and (max-width: 991px) {
@@ -194,5 +201,50 @@ a:hover {
 
   a:hover {
     text-transform: none;
+  }
+  .signup {
+    font-family: DM Sans;
+    font-size: 27px;
+    font-weight: 500;
+    line-height: 41px;
+    letter-spacing: -0.011em;
+    text-align: center;
+    background-color: #fff;
+  }
+
+  .signin {
+    font-family: DM Sans;
+    font-size: 27px;
+    font-weight: 500;
+    line-height: 41px;
+    letter-spacing: -0.011em;
+    text-align: center;
+    background-color: #fff;
+  }
+
+  .home {
+    font-family: DM Sans;
+    font-size: 27px;
+    font-weight: 500;
+    line-height: 41px;
+    letter-spacing: -0.011em;
+    text-align: center;
+  }
+  .about {
+    font-family: DM Sans;
+    font-size: 27px;
+    font-weight: 500;
+    line-height: 41px;
+    letter-spacing: -0.011em;
+    text-align: center;
+  }
+
+  .hospitals {
+    font-family: DM Sans;
+    font-size: 27px;
+    font-weight: 500;
+    line-height: 41px;
+    letter-spacing: -0.011em;
+    text-align: center;
   }
 }

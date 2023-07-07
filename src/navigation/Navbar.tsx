@@ -11,7 +11,7 @@ import CareFinder from "../assets/CareFinder.png";
 
 interface User {
   displayName: string;
-  photoURL: string;
+  photoUrl: string;
 }
 
 interface NavbarProps {
@@ -23,8 +23,6 @@ const Navbar: React.FC<NavbarProps> = ({ signOut, user }) => {
   const [toggle, setToggle] = useState(false);
   const [show, setShow] = useState(false);
   const [open, setOpen] = useState<boolean>(false);
-  
-
   const [offset] = WindowOffSet();
 
   const handleLinkClick = () => {
@@ -44,7 +42,7 @@ const Navbar: React.FC<NavbarProps> = ({ signOut, user }) => {
   return (
     <nav className={offset > 20 ? "nav_container1" : "nav_container"}>
       <div className="nav_wrapper">
-        <h1 className="nav_header">CareFinder <img src={CareFinder} alt="logo" className="carefinderlogo" width={50} style={{background: "white"}} /> </h1>
+        <h1 className="nav_header">CareFinder <img src={CareFinder} alt="logo" className="carefinderlogo" /> </h1>
         
         
         <div className={`nav_ul ${open ? "active" : ""}`}>
@@ -54,16 +52,18 @@ const Navbar: React.FC<NavbarProps> = ({ signOut, user }) => {
                 Home
               </Link>
             </li>
+
             {user ? (
               <li>
                 <div
                   onClick={() => setShow(!show)}
                   className={`app_navbar_profile ${show ? "active" : ""}`}
                 >
-                  {user && (
+                  
+                  {/* {user && (
                     <div className="app_navbar_profile_flex">
                       <img
-                        src={user.photoURL}
+                        src={user.photoUrl}
                         alt="profile"
                         className="avatar"
                       />
@@ -88,6 +88,35 @@ const Navbar: React.FC<NavbarProps> = ({ signOut, user }) => {
                         </Link>
                       </li>
                     </ul>
+                  )}
+                </div>
+              </li> */}
+               {user && (
+                    <div className="app_navbar_profile_flex">
+                      
+                      <p>
+                      <img src={user.photoUrl} alt="profile" className="avatar" />
+                        {user.displayName}
+                        <RiArrowDownSFill onClick={() => setToggle(!toggle)} />
+                        {toggle && (
+                        <ul id="dropdown_menu">
+                          <li className="list-drop">
+                            <Link to="/profile" onClick={handleLinkClick}>
+                              <RxAvatar className="user_icon" />
+                              Profile
+                            </Link>
+                          </li>
+                          <li>
+                            <Link to="/" onClick={signOut}>
+                              <MdLogout className="user_icon" />
+                              Logout
+                            </Link>
+                          </li>
+                        </ul>
+                      )}
+                      </p>
+                    
+                    </div>
                   )}
                 </div>
               </li>

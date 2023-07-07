@@ -11,6 +11,7 @@ const Home: React.FC = () => {
   return (
     
     <div className="careheader_container">
+      
       <div className="careheader_wrapper">
         <div className="careheader_head">
           <h1 className="careheader_heading">
@@ -26,7 +27,7 @@ const Home: React.FC = () => {
               className="careheader_input_element"
               onClick={
                 () => {
-                  navigate ("/signup")
+                  navigate ("/signup");
                 }
               }
             />
