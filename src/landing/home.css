@@ -16,10 +16,10 @@
   padding: 0%;
 }
 
-.careheader_wrapper {
+/* .careheader_wrapper {
     height: 100%;
     width: 100%;
-}
+} */
 .careheader_head {
   text-align: center;
   line-height: 3rem;
@@ -61,9 +61,6 @@
   cursor: pointer;
 }
 
-/* .careheader_heading_span {
-  text-decoration: underline;
-} */
 
 .careheader_select {
   display: flex;
@@ -111,6 +108,8 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
+    margin-top: 1.5rem;
+    width: 100%;
   }
 
   .careheader_item {

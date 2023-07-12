@@ -62,12 +62,14 @@ const Navbar: React.FC<NavbarProps> = ({ signOut, user }) => {
                 >
                   {user && (
                     <div className="app_navbar_profile_flex">
-                      <p>
-                        <img
-                          src={user.photoUrl}
-                          alt="profile"
-                          className="avatar"
-                        />
+                       <p>
+                        {user.photoUrl && (
+                          <img
+                            src={user.photoUrl}
+                            alt="profile"
+                            className="avatar"
+                          />
+                        )}
                         {user.displayName}
                         <RiArrowDownSFill onClick={() => setToggle(!toggle)} />
                         {toggle && (
