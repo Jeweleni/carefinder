@@ -17,8 +17,6 @@ const Home: React.FC = () => {
           <h1 className="careheader_heading">
             Search Your Health Care Provider
           </h1>
-          
-         
           <div className="careheader_input">
           <AiOutlineSearch className="careheader_input_icon" />
             <input
