@@ -59,7 +59,7 @@ const RegistrationForm = () => {
   return (
     <div className="registration-form-wrapper">
       <div className="registration-form">
-        <h1>Registration</h1>
+        <h1>Signup</h1>
         {error && <Alert variant="danger">{error}</Alert>}
         {registered ? (
           <div>
@@ -119,7 +119,7 @@ const RegistrationForm = () => {
               className="signup-methods"
               type="submit"
             >
-              Register
+              Signup
             </button>
           </form>
         )}

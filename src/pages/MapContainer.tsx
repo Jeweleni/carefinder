@@ -48,11 +48,6 @@ const MapContainer = ({ hospitals }: { hospitals: Hospital[] }) => {
   const googleMapsApiKey = "AIzaSyDYL048QSsNPEHs_crrIeZfrYH5_Qsh2Nk";
 
 
-  // const googleMapsApiKey = import.meta.env.VITE_API_KEY;
-
-
-  
-
 
   return (
     <div>

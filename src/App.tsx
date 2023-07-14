@@ -14,8 +14,10 @@ import HealthTips from "./pages/HealthTips";
 import { auth, signOut, signInWithGoogle } from "./firebase";
 import Navbar from "./navigation/Navbar";
 import Doctors from "./pages/Doctors";
+import Profile from "./pages/Profile";
 
 function App() {
+  
   const { currentUser, setCurrentUser } = useContext(AuthContext);
   const [details, setDetails] = useState();
   let count = localStorage.getItem("page_views");
@@ -90,12 +92,9 @@ function App() {
               />
             }
           />
-          {/* <Route
-            path="/hospitaldetails"
-            element={<HospitalDetails name={""} business_status={""} rating={""} />}
-          /> */}
           <Route path="/doctors" element={<Doctors />} />
           <Route path="/healthtips" element={<HealthTips />} />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
       </ErrorBoundary>
     </div>

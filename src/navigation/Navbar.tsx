@@ -62,7 +62,7 @@ const Navbar: React.FC<NavbarProps> = ({ signOut, user }) => {
                 >
                   {user && (
                     <div className="app_navbar_profile_flex">
-                       <p>
+                      <p>
                         {user.photoUrl && (
                           <img
                             src={user.photoUrl}

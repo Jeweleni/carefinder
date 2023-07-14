@@ -1,18 +1,14 @@
 .careheader_container {
   background: url(../assets/carefinder1.png);
-  /* background-size: cover;
-    background-repeat: no-repeat;
-    height: 100vh;
-    display: grid;
-    place-items: center; */
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   object-fit: contain;
+  display: grid;
   height: 100vh;
   width: 100%;
   margin: 0%;
-  margin-top: 0%;
+  margin-top: 0;
   padding: 0%;
 }
 
@@ -23,6 +19,7 @@
 .careheader_head {
   text-align: center;
   line-height: 3rem;
+  margin-top: 3rem;
 }
 
 .careheader_heading,
@@ -43,6 +40,7 @@
 
 .careheader_input {
   position: relative;
+  padding: 20px 30px;
 }
 
 .careheader_input_element {
@@ -54,11 +52,12 @@
 }
 
 .careheader_input_icon {
-  position: absolute;
+  position: relative;
   right: 45px;
   font-size: 1.5rem;
-  top: 15px;
+  top: 20px;
   cursor: pointer;
+  padding: 20px 30px;
 }
 
 
@@ -70,6 +69,7 @@
   width: 100%;
   margin-top: 1.5rem;
   gap: 1rem;
+  padding: 20px 30px;
 }
 
 .careheader_item {
@@ -118,12 +118,4 @@
   .careheader_select_icon {
     font-size: 20px;
   }
-  /* .careheader_container {
-    background: url(../assets/carefinder1.png);
-    background-size: cover;
-    background-repeat: no-repeat;
-    height: 100vh;
-    display: grid;
-    place-items: center;
-  } */
 }

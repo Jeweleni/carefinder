@@ -8,13 +8,13 @@ import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDR4Ig2_MYzca769cgpxqqHHhU_eQLAA5w",
-  authDomain: "carefinder-f97bb.firebaseapp.com",
-  projectId: "carefinder-f97bb",
-  storageBucket: "carefinder-f97bb.appspot.com",
-  messagingSenderId: "405540239833",
-  appId: "1:405540239833:web:fb545855e8af6a01d241c8",
-  measurementId: "G-2LMQNT2GSP"
+  apiKey: "AIzaSyCYFXg4WfKJYwlD0lUOALpJksSKYHDYx-I",
+  authDomain: "carefinder-68614.firebaseapp.com",
+  projectId: "carefinder-68614",
+  storageBucket: "carefinder-68614.appspot.com",
+  messagingSenderId: "433599252416",
+  appId: "1:433599252416:web:a43ffb15a78b8fb7fcea25",
+  measurementId: "G-W3C0FWXDCZ",
 };
 
 // Initialize Firebase
