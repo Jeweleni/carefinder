@@ -89,6 +89,7 @@ function App() {
                 details={details}
                 vicinity={""}
                 opening_hours={false}
+                placeId={"/"}
               />
             }
           />

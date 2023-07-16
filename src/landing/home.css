@@ -117,14 +117,4 @@
   .careheader_select_icon {
     font-size: 20px;
   }
-
-  careheader_container {
-    background: url(../assets/carefinder1.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    height: 100vh;
-    display: grid;
-    place-items: center;
-}
-
 }
