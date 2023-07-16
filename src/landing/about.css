@@ -72,7 +72,7 @@
 }
 
 .about__icon {
-    color: var(--color-primary);
+    color: rgb(98, 130, 249);
     font-size: 1.4rem;
     margin-bottom: 1rem;
 
@@ -80,11 +80,12 @@
 
 .about__card h5 {
     font-size: 0.95rem;
+    color: #fff;
 }
 
 .about__card small {
     font-size: 0.7rem;
-    color: var(--color-light);
+    color: #fff;
 }
 
 .about__content p{

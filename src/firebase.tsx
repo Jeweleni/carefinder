@@ -1,11 +1,13 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-import { getAuth, signInWithPopup, createUserWithEmailAndPassword, GoogleAuthProvider } from "firebase/auth";
+import {
+  getAuth,
+  signInWithPopup,
+  createUserWithEmailAndPassword,
+  GoogleAuthProvider,
+} from "firebase/auth";
 import { getAnalytics, logEvent } from "firebase/analytics";
-import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
-
-
+import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCYFXg4WfKJYwlD0lUOALpJksSKYHDYx-I",
@@ -21,12 +23,11 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 export const analytics = getAnalytics(app);
 logEvent(analytics, "notification_received");
-
-
 export const auth = getAuth();
 
 // Firestore
-export const db = getFirestore();
+export const db = getFirestore(app);
+export { firebaseConfig };
 
 // Google Auth Provider
 const provider = new GoogleAuthProvider();
@@ -36,32 +37,11 @@ provider.setCustomParameters({ prompt: "select_account" });
 export const signInWithGoogle = () => signInWithPopup(getAuth(), provider);
 
 // Sign up with email and password
-export const signUp = (email: string, password: string) => createUserWithEmailAndPassword(getAuth(), email, password);
-
-
+export const signUp = (email: string, password: string) =>
+  createUserWithEmailAndPassword(getAuth(), email, password);
 
 // Sign out
 export const signOut = () => getAuth().signOut();
 
-// Storage 
-export const storage = getStorage();
-
-// Upload image to storage
-export const uploadImage = (file: any, name: string) => {
-  const storageRef = ref(storage, name);
-  uploadBytes(storageRef, file).then((snapshot) => {
-    console.log("Uploaded a blob or file!");
-  });
-}
-
-// Get image url from storage
-export const getImageUrl = (name: string) => {
-  const storageRef = ref(storage, name);
-  return getDownloadURL(storageRef);
-}
-
-
-
-
-
-export default auth;
+// Storage
+export const storage = getStorage(app);

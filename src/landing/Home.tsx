@@ -4,6 +4,7 @@ import { AiOutlineSearch } from "react-icons/ai";
 import { GiDoctorFace } from "react-icons/gi";
 import { MdOutlineTipsAndUpdates } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
+import Footer from "../footer/Footer";
 
 
 const Home: React.FC = () => {
@@ -55,5 +56,6 @@ const Home: React.FC = () => {
  
   );
 };
+<Footer/>
 
 export default Home;

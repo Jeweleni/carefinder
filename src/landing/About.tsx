@@ -1,7 +1,8 @@
 import React from 'react';
 import './about.css';
-// import { FaUserDoctor } from 'react-icons/fa';
+import { FaUserDoctor } from 'react-icons/fa6';
 import hospital2 from '../assets/hospital2.png';
+
 
 const About = () => {
   return (
@@ -10,15 +11,17 @@ const About = () => {
         <div className='container about__container'>
         <h4>Welcome to</h4>
         <h2>Carefinder</h2>
-                {/* <div className="about__me">
+
+        {/* <div className="about__me">
                     <div className="about__me-image">
                         <img src={hospital2} alt=""/>
                     </div>
-                </div>     */}
+                  </div> */}
+                
                     <div className="about__content">
                         <div className="about__cards">
                             <article className="about__card"> 
-                                {/* <FaUserDoctor className= "about__icon"/> */}
+                                <FaUserDoctor className= "about__icon"/>
                                 <h5>Search Doctors</h5>
                                 <small>Effortlessly Find the Best Hospitals Near You</small>  
                             </article>

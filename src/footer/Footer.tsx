@@ -13,8 +13,8 @@ const Footer: React.FC = () => {
         <div className="footer_container">
             <div className="footer_wrapper">
                 <div className="footer_head">
-                    <h1 className="footer_heading">CareFinder.</h1>
-                    <p className="footer_para">Lorem ipsum dolor</p>
+                    <h1 className="footer_heading">CareFinder by Jewel</h1>
+                    <p className="footer_para">EMJcreates ltd</p>
                 </div>
                 <div className="footer_links">
                     <div className="footer_link">
@@ -23,7 +23,7 @@ const Footer: React.FC = () => {
                     </div>
                     <div className="footer_link">
                         <FaPhone className="footer_link_icon" />
-                        <p>+123 456 7890</p>
+                        <p>+2348147528661</p>
                     </div>
                     <div className="footer_link">
                         <FaEnvelope className="footer_link_icon" />

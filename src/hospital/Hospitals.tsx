@@ -165,7 +165,7 @@ const Hospitals: React.FC<HospitalProps> = ({ handleDetails }) => {
       .join("\n");
     const shareBody = `Check out these hospitals: \n${hospitalData}`;
 
-    const linkUrl = `https://hospital-carefinder.vercel.app/hospitals?subject=${encodeURIComponent(
+    const linkUrl = `https://carefinder-by-jewel.vercel.app//hospitals?subject=${encodeURIComponent(
       "Check out these hospitals"
     )}&body=${encodeURIComponent(shareBody)}`;
     window.open(linkUrl, "_blank");

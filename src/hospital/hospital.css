@@ -6,10 +6,10 @@
     place-items: center;
   }
   
-  body {
+  /* body {
     background: url(../assets/hospital1.png);
   }
-  
+   */
   #careheader_input {
     position: relative;
     width: 40%;
