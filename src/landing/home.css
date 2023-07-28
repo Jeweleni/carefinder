@@ -1,15 +1,16 @@
 .careheader_container {
-  background: url(../assets/carefinder1.png);
+  background: url(../assets/hospitalb.jpeg);
   background-size: cover;
-  background-repeat: no-repeat;
   background-position: center;
+  background-repeat: no-repeat;
   object-fit: contain;
   display: grid;
+  place-items: center;
   height: 100vh;
   width: 100%;
-  margin: 0%;
-  margin-top: 0;
-  padding: 0%;
+  margin-top: 0%;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 /* .careheader_wrapper {
@@ -19,7 +20,7 @@
 .careheader_head {
   text-align: center;
   line-height: 3rem;
-  margin-top: 3rem;
+  margin-top: 1rem;
 }
 
 .careheader_heading,
@@ -117,4 +118,5 @@
   .careheader_select_icon {
     font-size: 20px;
   }
+
 }

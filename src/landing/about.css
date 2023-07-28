@@ -2,6 +2,7 @@
     display:grid;
     grid-template-columns: 35% 50%;
     gap: 15%;
+    padding: 1rem;
 }
   
 .about__me {
@@ -53,7 +54,7 @@
 
 .about__card{
     background: var(--color-bg-variant);
-    border: 1px solid transparent;
+    border: 1px solid black;
     border-radius: 1rem;
     padding: 2rem;
     text-align: center;
